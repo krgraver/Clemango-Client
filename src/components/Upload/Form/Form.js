@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import axios from 'axios';
+import constant from '../../../config/constants.js';
 
 class Form extends Component {
 	constructor() {
 		super();
 		this.state = {
-			title: "",
-			uploader: "",
-			category: ""
+			title: '',
+			uploader: '',
+			category: ''
 		};
-		this.uploadUrl = 'http://localhost:3001/uploads/post';
+		this.uploadUrl = constant.API_URL + '/uploads/post';
 
 		this.changeTitle = this.changeTitle.bind(this);
 		this.changeUploader = this.changeUploader.bind(this);

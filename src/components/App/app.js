@@ -3,19 +3,20 @@ import axios from 'axios';
 import { Link } from 'react-router';
 import { Navbar, Nav, NavItem, Modal, Button, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import constant from '../../config/constants.js';
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			email: "",
-			password: "",
+			email: '',
+			password: '',
 			userAuthenticated: false,
 			showModal: false,
 			showSignup: false
 		};
-		this.loginUrl = 'http://localhost:3001/login';
-		this.signupUrl = 'http://localhost:3001/signup';
+		this.loginUrl = constant.API_URL + '/login';
+		this.signupUrl = constant.API_URL + '/signup';
 
 		this.openAuthentication = this.openAuthentication.bind(this);
 		this.closeAuthentication = this.closeAuthentication.bind(this);
@@ -31,7 +32,7 @@ class App extends Component {
 	componentWillMount() {
 		if (localStorage.getItem('token')) {
 			axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-			
+
 			this.setState({
 				userAuthenticated: true
 			});

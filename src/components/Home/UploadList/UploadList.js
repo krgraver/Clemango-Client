@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ListItem from './ListItem/ListItem.js';
 import axios from 'axios';
 import { Col } from 'react-bootstrap';
+import constant from '../../../config/constants.js';
 
 class UploadList extends Component {
 	constructor() {
@@ -9,7 +10,7 @@ class UploadList extends Component {
 		this.state = {
 			uploads: []
 		};
-		this.getUploadsUrl = 'http://localhost:3001/uploads/getAll';
+		this.getUploadsUrl = constant.API_URL + '/uploads/getAll';
 	}
 
 	componentDidMount() {

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import constant from '../../../../config/constants.js';
 
 class PublicUpload extends Component {
 	constructor() {
 		super();
 		this.state = {
-			title: "",
-			uploader: "",
-			category: ""
+			title: '',
+			uploader: '',
+			category: ''
 		}
 
-		this.getUploadUrl = 'http://localhost:3001/uploads/getOne';
+		this.getUploadUrl = constant.API_URL + '/uploads/getOne';
 	}
 
 	componentWillMount() {

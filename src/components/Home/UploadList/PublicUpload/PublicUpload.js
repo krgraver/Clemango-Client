@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import request from 'superagent';
 import constant from '../../../../config/constants.js';
 
 class PublicUpload extends Component {
@@ -15,15 +15,17 @@ class PublicUpload extends Component {
 	}
 
 	componentWillMount() {
-		axios.post(this.getUploadUrl, {
-			_id: this.props.params._id
-		}).then((res) => {
-			this.setState({
-				title: res.data.title,
-				uploader: res.data.uploader,
-				category: res.data.category
+		request.post(this.getUploadUrl)
+			.send({
+				_id: this.props.params._id
+			})
+			.end((err, res) => {
+				this.setState({
+					title: res.body.title,
+					uploader: res.body.uploader,
+					category: res.body.category
+				});
 			});
-		});
 	}
 
 	render() {

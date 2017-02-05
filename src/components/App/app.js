@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import request from 'superagent';
 import { Link } from 'react-router';
 import { Navbar, Nav, NavItem, Modal, Button, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -31,8 +31,6 @@ class App extends Component {
 
 	componentWillMount() {
 		if (localStorage.getItem('token')) {
-			axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-
 			this.setState({
 				userAuthenticated: true
 			});
@@ -78,45 +76,46 @@ class App extends Component {
 	}
 
 	logIn() {
-		axios.post(this.loginUrl, {
-			email: this.state.email,
-			password: this.state.password
-		})
-		.then((res) => {
-			if (res.data !== 'invalid password') {
-				localStorage.setItem('token', res.data);
-				axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+		request.post(this.loginUrl)
+			.send({
+				email: this.state.email,
+				password: this.state.password
+			})
+			.end((err, res) => {
+				if (res.body !== 'invalid password') {
+					localStorage.setItem('token', res.body);
 
-				this.setState({
-					userAuthenticated: true,
-					showModal: false
-				});
-			}
-		});
+					this.setState({
+						userAuthenticated: true,
+						showModal: false
+					});
+				}
+			});
 	}
 
 	logOut() {
 		localStorage.removeItem('token');
+
 		this.setState({
 			userAuthenticated: false
 		});
 	}
 
 	signUp() {
-		axios.post(this.signupUrl, {
-			email: this.state.email,
-			password: this.state.password
-		})
-		.then((res) => {
-			localStorage.setItem('token', res.data);
-			axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-		});
+		request.post(this.signupUrl)
+			.send({
+				email: this.state.email,
+				password: this.state.password
+			})
+			.end((err, res) => {
+				localStorage.setItem('token', res.body);
+			});
 
-		this.setState({
-			userAuthenticated: true,
-			showModal: false
-		});
-	}
+			this.setState({
+				userAuthenticated: true,
+				showModal: false
+			});
+		}
 
 	render() {
 		let navItems;

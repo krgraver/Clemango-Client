@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem/ListItem.js';
-import axios from 'axios';
+import request from 'superagent';
 import { Col } from 'react-bootstrap';
 import constant from '../../../config/constants.js';
 
@@ -14,10 +14,10 @@ class UploadList extends Component {
 	}
 
 	componentDidMount() {
-		axios.get(this.getUploadsUrl)
-		.then((res) => {
+		request.get(this.getUploadsUrl)
+		.end((err, res) => {
 			this.setState({
-				uploads: res.data
+				uploads: res.body
 			});
 		});
 	}

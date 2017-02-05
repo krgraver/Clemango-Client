@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import axios from 'axios';
+import request from 'superagent';
 import constant from '../../../config/constants.js';
+import Dropzone from 'react-dropzone';
 
 class Form extends Component {
 	constructor() {
@@ -41,17 +42,37 @@ class Form extends Component {
 		});
 	}
 
+	onDrop(files) {
+		var image = new FormData();
+		image.append('image', files[0]);
+
+		request.post(constant.API_URL + '/uploads/image')
+			.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			.send(image)
+			.end((err, res) => {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(res);
+				}
+			});
+	}
+
 	submitUpload() {
-		axios.post(this.uploadUrl, {
-			title: this.state.title,
-			uploader: this.state.uploader,
-			category: this.state.category
-		})
-		.then((res) => {
-			if (res.data) {
-				browserHistory.push('/');
-			}
-		});
+		request.post(this.uploadUrl)
+			.set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+			.send({
+				title: this.state.title,
+				uploader: this.state.uploader,
+				category: this.state.category
+			})
+			.end((err, res) => {
+				if (err) {
+					console.log(err);
+				} else {
+					browserHistory.push('/');
+				}
+			});
 	}
 
 	render() {
@@ -81,6 +102,9 @@ class Form extends Component {
 					onChange={this.changeCategory}
 					placeholder="Enter category"
 				/>
+				<Dropzone onDrop={this.onDrop}>
+					<div>Drop your file here or click to upload</div>
+				</Dropzone>
 				<Button bsStyle="primary" onClick={this.submitUpload}>Submit</Button>
 			</FormGroup>
 		)

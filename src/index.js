@@ -1,20 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
-import App from './components/App/app.js';
-import Home from './components/Home/Home.js';
-import PublicUpload from './components/Home/UploadList/PublicUpload/PublicUpload.js';
-import Upload from './components/Upload/Upload.js';
-import Groups from './components/Groups/Groups.js';
-import './index.css';
+import App from './app/app.js';
+import Home from './app/Home/Home.js';
+import ResetPassword from './app/Profile/ResetPassword.js';
+import MyProfile from './app/Profile/MyProfile.js';
+import Profile from './app/Profile/Profile.js';
+import EditProfile from './app/Profile/EditProfile.js';
+import CreateUpload from './app/Uploads/CreateUpload.js';
+import EditUpload from './app/Uploads/EditUpload.js';
+import Upload from './app/Uploads/Upload.js';
+import Notifications from './app/Notifications/Notifications.js';
+import '../public/css/index.css';
 
 
-ReactDOM.render((<Router history={browserHistory}>
+ReactDOM.render((<Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
 					<Route component={App}>
 						<Route path="/" component={Home} />
-						<Route path="/uploads/:_id" component={PublicUpload} />
-						<Route path="/upload" component={Upload} />
-						<Route path="/groups" component={Groups} />
+						<Route path="/reset/:resetToken" component={ResetPassword} />
+						<Route path="/profile/me" component={MyProfile} />
+						<Route path="/profile/:userId" component={Profile} />
+						<Route path="/profile/me/edit" component={EditProfile} />
+						<Route path="/uploads/create" component={CreateUpload} />
+						<Route path="/uploads/:uploadId/edit" component={EditUpload} />
+						<Route path="/uploads/:uploadId" component={Upload} />
+						<Route path="/notifications" component={Notifications} />
 					</Route>
 				</Router>),
   				document.getElementById('root')

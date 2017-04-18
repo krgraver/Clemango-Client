@@ -3,18 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "node-sass": "^4.5.0",
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
+    "moment": "^2.18.1",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
+    "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.9.2",
     "react-router": "^3.0.2",
     "react-router-bootstrap": "^0.23.1",
+    "react-text-truncate": "^0.8.3",
     "superagent": "^3.4.1"
   },
   "scripts": {
+    "build-css": "node-sass public/ -o public/",
+    "watch-css": "npm run build-css && node-sass public/ -o public/ --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

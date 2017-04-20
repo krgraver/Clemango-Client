@@ -463,7 +463,7 @@ class Upload extends Component {
 								{UserOptions}
 								<h4>Context:</h4>
 								<pre>{this.state.context}</pre>
-								<div className="upload-container">
+								<div className="upload-container buffer-bottom-sm">
 									<img src={this.state.image} alt="uploaded work" />
 								</div>
 							</div>

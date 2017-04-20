@@ -42,7 +42,8 @@ h1, h2, h3 {
 }
 
 pre {
-	white-space: pre-wrap;
+	word-wrap: break-word;
+	white-space: pre-line;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 16px;
 	background-color: transparent;

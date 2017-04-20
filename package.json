@@ -2,7 +2,6 @@
   "name": "clemango-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://clemango.herokuapp.com/",
   "devDependencies": {
     "node-sass": "^4.5.0",
     "react-scripts": "0.8.5"

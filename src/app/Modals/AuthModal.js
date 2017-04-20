@@ -130,6 +130,7 @@ class AuthModal extends Component {
 					        		/>
 					        	</FormGroup>
 					        	{this.props.signupError ? <p className="disclaimer-error">There is already an account for this email</p> : null}
+					        	{this.props.passwordLengthError ? <p className="disclaimer-error">Passwords must be at least 8 characters</p> : null}
 					        	<div className="centered buffer-top-md">
 					        		<Button className="btn-clear buffer-bottom-sm" onClick={this.props.showLoginModal}>I have an account</Button>
 						        	<Button className="btn-primary btn-full" onClick={this.props.showSetupModal}>Next</Button>

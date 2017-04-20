@@ -10,7 +10,10 @@ class ResetPassword extends Component {
 			password: '',
 			confirmPassword: '',
 			passwordError: false,
-			passwordChanged: false
+			passwordLengthError: false,
+			passwordChanged: false,
+			newPasswordValidation: null,
+			confirmPasswordValidation: null
 		}
 		this.resetPasswordUrl = constant.API_URL + '/user/resetPassword';
 
@@ -23,7 +26,8 @@ class ResetPassword extends Component {
 		let newPassword = document.getElementById('newPassword').value;
 
 		this.setState({
-			password: newPassword
+			password: newPassword,
+			newPasswordValidation: null
 		});
 	}
 
@@ -31,30 +35,57 @@ class ResetPassword extends Component {
 		let newConfirm = document.getElementById('newConfirm').value;
 
 		this.setState({
-			confirmPassword: newConfirm
+			confirmPassword: newConfirm,
+			confirmPasswordValidation: null
 		});
 	}
 
 	submitPassword() {
-		if (this.state.password === this.state.confirmPassword) {
-			request.post(this.resetPasswordUrl)
-				.send({
-					token: this.props.params.resetToken,
-					newPassword: this.state.password
-				})
-				.end((err, res) => {
-					if (err) {
-						console.log(err);
-					} else {
-						this.setState({
-							passwordChanged: true
-						});
-					}
-				});
-		} else {
+		if (!this.state.password) {
 			this.setState({
-				passwordError: true
+				newPasswordValidation: 'error'
 			});
+		}
+
+		if (!this.state.confirmPassword) {
+			this.setState({
+				confirmPasswordValidation: 'error'
+			});
+		}
+
+		if (this.state.password.length < 8) {
+			this.setState({
+				passwordLengthError: true,
+				passwordError: false,
+				passwordChanged: false
+			});
+		}
+
+		if (this.state.password && this.state.confirmPassword && this.state.password.length >= 8) {
+			if (this.state.password === this.state.confirmPassword) {
+				request.post(this.resetPasswordUrl)
+					.send({
+						token: this.props.params.resetToken,
+						newPassword: this.state.password
+					})
+					.end((err, res) => {
+						if (err) {
+							console.log(err);
+						} else {
+							this.setState({
+								passwordError: false,
+								passwordLengthError: false,
+								passwordChanged: true
+							});
+						}
+					});
+			} else {
+				this.setState({
+					passwordChanged: false,
+					passwordLengthError: false,
+					passwordError: true
+				});
+			}
 		}
 	}
 
@@ -62,8 +93,8 @@ class ResetPassword extends Component {
 		return (
 			<Row>
 				<Col xs={10} xsOffset={1} md={4} mdOffset={4} className="column-container buffer-top-md">
-					<h2>Reset Password</h2>
-			        <FormGroup validationState={this.state.firstNameValidation}>
+					<h2 className="buffer-bottom-md">Reset Password</h2>
+			        <FormGroup validationState={this.state.newPasswordValidation}>
 		        		<ControlLabel>New Password</ControlLabel>
 		        		<FormControl
 		        			id="newPassword"
@@ -74,7 +105,7 @@ class ResetPassword extends Component {
 		        			placeholder="Enter a new password"
 		        		/>
 		        	</FormGroup>
-			        <FormGroup validationState={this.state.lastNameValidation}>
+			        <FormGroup validationState={this.state.confirmPasswordValidation}>
 		        		<ControlLabel>Confirm Password</ControlLabel>
 		        		<FormControl
 		        			id="newConfirm"
@@ -86,7 +117,8 @@ class ResetPassword extends Component {
 		        		/>
 		        	</FormGroup>
 		        	{this.state.passwordChanged ? <p className="disclaimer-success">Password changed!</p> : null}
-		        	{this.state.passwordError ? <p className="disclaimer-error">These do not match</p> : null}
+		        	{this.state.passwordError ? <p className="disclaimer-error">Password fields do not match</p> : null}
+		        	{this.state.passwordLengthError ? <p className="disclaimer-error">Passwords must be at least 8 characters</p> : null}
 		        	<div className="centered buffer-top-md">
 		        		<Button className="btn-primary btn-full" onClick={this.submitPassword}>Update Password</Button>
 		        	</div>

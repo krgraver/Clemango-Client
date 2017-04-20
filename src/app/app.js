@@ -36,7 +36,8 @@ class App extends Component {
 			signupCredentialsValidation: null,
 			loginError: false,
 			resetError: false,
-			signupError: false
+			signupError: false,
+			passwordLengthError: false
 		};
 		this.userInfoUrl = constant.API_URL + '/user/getUser';
 		this.loginUrl = constant.API_URL + '/user/login';
@@ -158,7 +159,8 @@ class App extends Component {
 			signupCredentialsValidation: null,
 			loginError: false,
 			resetError: false,
-			signupError: false
+			signupError: false,
+			passwordLengthError: false
 		});
 	}
 
@@ -242,7 +244,13 @@ class App extends Component {
 			});
 		}
 
-		if (this.state.email && this.state.password){
+		if (this.state.password.length < 8) {
+			this.setState({
+				passwordLengthError: true
+			});
+		}
+
+		if (this.state.email && this.state.password.length >= 8){
 			request.post(this.checkEmailUrl)
 				.send({
 					email: this.state.email
@@ -258,7 +266,8 @@ class App extends Component {
 						this.setState({
 							showSetup: true,
 							showSignup: false,
-							signupError: false
+							signupError: false,
+							passwordLengthError: false
 						});
 					}
 				});
@@ -634,6 +643,7 @@ class App extends Component {
 							loginError={this.state.loginError}
 							resetError={this.state.resetError}
 							signupError={this.state.signupError}
+							passwordLengthError={this.state.passwordLengthError}
 				/>
 				<TopNav userAuthenticated={this.state.userAuthenticated}
 						showNotifications={this.showNotifications}

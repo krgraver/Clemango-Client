@@ -461,6 +461,7 @@ class Upload extends Component {
 							<div className="overflow-scroll">
 								<h3 className="buffer-top-md">{this.state.title}</h3>
 								{UserOptions}
+								<h4>Context:</h4>
 								<pre>{this.state.context}</pre>
 								<div className="upload-container">
 									<img src={this.state.image} alt="uploaded work" />

@@ -15,12 +15,11 @@ class PublicUploadList extends Component {
 			searchValue: '',
 			searchResults: [],
 			activeFilter: '',
-			skipAmount: 12
+			skipAmount: 24
 		};
 		this.getFirstUploadsUrl = constant.API_URL + '/uploads/getFirstPublicUploads';
 		this.getNextUploadsUrl = constant.API_URL + '/uploads/getNextPublicUploads';
 		this.searchPublicUrl = constant.API_URL + '/uploads/searchPublic';
-		this.getNextSearchedUrl = constant.API_URL + '/uploads/getNextSearchedUploads';
 
 		this.changeSearch = this.changeSearch.bind(this);
 		this.runSearch = this.runSearch.bind(this);
@@ -81,38 +80,20 @@ class PublicUploadList extends Component {
 	}
 
 	loadNextUploads() {
-		if (this.state.searchValue){
-			request.post(this.getNextSearchedUrl)
-				.send({
-					searchValue: this.state.searchValue,
-					skipAmount: this.state.skipAmount
-				})
-				.end((err, res) => {
-					if (err) {
-						console.log(err);
-					} else {
-						this.setState({
-							uploads: this.state.uploads.concat(res.body),
-							skipAmount: this.state.skipAmount + 12
-						});
-					}
-				});
-		} else {
-			request.post(this.getNextUploadsUrl)
-				.send({
-					skipAmount: this.state.skipAmount
-				})
-				.end((err, res) => {
-					if (err) {
-						console.log(err);
-					} else {
-						this.setState({
-							uploads: this.state.uploads.concat(res.body),
-							skipAmount: this.state.skipAmount + 12
-						});
-					}
-				});
-		}
+		request.post(this.getNextUploadsUrl)
+			.send({
+				skipAmount: this.state.skipAmount
+			})
+			.end((err, res) => {
+				if (err) {
+					console.log(err);
+				} else {
+					this.setState({
+						uploads: this.state.uploads.concat(res.body),
+						skipAmount: this.state.skipAmount + 24
+					});
+				}
+			});
 	}
 
 	render() {
@@ -175,7 +156,7 @@ class PublicUploadList extends Component {
 								);
 							})}
 							<div className="centered">
-								{this.state.uploads.length >= 12 ? <Button className="btn-outline btn-full buffer-top-md" onClick={this.loadNextUploads}>Load more</Button> : null}
+								{this.state.uploads.length >= 24 ? <Button className="btn-outline btn-full buffer-top-md" onClick={this.loadNextUploads}>Load more</Button> : null}
 							</div>
 						</div>
 		}

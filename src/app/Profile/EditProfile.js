@@ -31,6 +31,7 @@ class EditProfile extends Component {
 		this.changeFirst = this.changeFirst.bind(this);
 		this.changeLast = this.changeLast.bind(this);
 		this.changeCredentials = this.changeCredentials.bind(this);
+		this.goToPassword = this.goToPassword.bind(this);
 		this.submitChanges = this.submitChanges.bind(this);
 		this.openDelete = this.openDelete.bind(this);
 		this.closeDelete = this.closeDelete.bind(this);
@@ -110,6 +111,10 @@ class EditProfile extends Component {
 			credentials: newCredentials,
 			lastNameValidation: null
 		});
+	}
+
+	goToPassword() {
+		browserHistory.push('/profile/me/password');
 	}
 
 	submitChanges() {
@@ -315,6 +320,9 @@ class EditProfile extends Component {
 			        		/>
 			        	</FormGroup>
 			        	<div className="centered buffer-top-md">
+			        		<Button className="btn-clear" onClick={this.goToPassword}>Change Password</Button>
+				        </div>
+			        	<div className="centered buffer-top-sm">
 			        		<Button className="btn-primary btn-full buffer-bottom-sm" onClick={this.submitChanges}>Save</Button>
 			        	</div>
 			        	<div className="centered">

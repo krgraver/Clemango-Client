@@ -479,7 +479,7 @@ class Upload extends Component {
 							imageUrl={this.state.image}
 							usersInvited={this.state._usersInvited}
 							emailsInvited={this.state.emailsInvited}
-							uploadUrl={"localhost:3000/uploads/" + this.props.params.uploadId}
+							uploadUrl={"https://clemango.herokuapp.com/uploads/" + this.props.params.uploadId}
 							updateUpload={this.updateUpload}
 				/>
 				{UploadLightbox}

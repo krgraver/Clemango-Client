@@ -42,7 +42,7 @@ h1, h2, h3 {
 }
 
 pre {
-	word-break: keep-all;
+	word-break: keep-all !important;
 	word-wrap: break-word;
 	white-space: pre;
 	white-space: pre-wrap;

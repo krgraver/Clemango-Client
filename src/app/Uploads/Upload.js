@@ -444,6 +444,7 @@ class Upload extends Component {
 			meta: {
 				property: {
 					'og:type': 'website',
+					'og:url': 'https://clemango.herokuapp.com',
 					'og:title': 'Give design feedback on Clemango',
 					'og:description': 'Your input is wanted on this design',
 					'og:image': 'https://s3.amazonaws.com/clemango/assets/clemango-icon.png'

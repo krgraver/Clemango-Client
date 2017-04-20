@@ -47,8 +47,7 @@ pre {
 	background-color: transparent;
 	border-color: transparent;
 	padding: 0;
-	word-break: keep-all;
-    word-wrap: keep-word;
+	word-break: keep-all !important;
 	white-space: pre-wrap;
 }
 

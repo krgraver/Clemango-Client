@@ -1,6 +1,7 @@
 {
   "name": "clemango-client",
   "version": "0.1.0",
+  "main": "index.js",
   "private": true,
   "devDependencies": {
     "node-sass": "^4.5.0",

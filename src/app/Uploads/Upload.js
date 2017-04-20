@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import moment from 'moment';
+import classNames from 'classnames';
 import constant from '../../config/constants.js';
 import Comments from './Comments/Comments.js';
 import CommentForm from './Comments/CommentForm.js';
@@ -28,7 +29,8 @@ class Upload extends Component {
 			comments: [],
 			comment: '',
 			reply: '',
-			showShareModal: false
+			showShareModal: false,
+			showLightbox: false
 		}
 		this.checkUploadUrl = constant.API_URL + '/uploads/checkUpload';
 		this.userInfoUrl = constant.API_URL + '/user/getUser';
@@ -52,6 +54,8 @@ class Upload extends Component {
 		this.openShare = this.openShare.bind(this);
 		this.closeShare = this.closeShare.bind(this);
 		this.updateUpload = this.updateUpload.bind(this);
+		this.showLightbox = this.showLightbox.bind(this);
+		this.hideLightbox = this.hideLightbox.bind(this);
 	}
 
 	componentDidMount() {
@@ -423,6 +427,18 @@ class Upload extends Component {
 		});
 	}
 
+	showLightbox() {
+		this.setState({
+			showLightbox: true
+		});
+	}
+
+	hideLightbox() {
+		this.setState({
+			showLightbox: false
+		});
+	}
+
 	render() {
 		let currentUser = localStorage.getItem('currentUser'),
 			timeFromNow = moment(this.state.timestamp).fromNow(),
@@ -438,6 +454,17 @@ class Upload extends Component {
 								<h5 className="buffer-bottom-md">Uploaded by <Link to={"/profile/" + this.state._createdBy._id}>{this.state._createdBy.firstName} {this.state._createdBy.lastName}</Link> {timeFromNow}</h5>
 							</div>
 		}
+
+		let lightboxClass = classNames('lightbox', {
+			'lightbox-show': this.state.showLightbox
+		});
+
+		let UploadLightbox = 	<div className={lightboxClass}>
+									<div className="upload-container">
+										<img src={this.state.image} alt="uploaded work" />
+									</div>
+									<i className="fa fa-times" aria-hidden="true" onClick={this.hideLightbox}></i>
+								</div>
 
 		return (
 			<div>
@@ -455,6 +482,7 @@ class Upload extends Component {
 							uploadUrl={"localhost:3000/uploads/" + this.props.params.uploadId}
 							updateUpload={this.updateUpload}
 				/>
+				{UploadLightbox}
 				<Row>
 					<Col md={10} mdOffset={1}>
 						<Col md={8}>
@@ -463,7 +491,7 @@ class Upload extends Component {
 								{UserOptions}
 								<h4>Context:</h4>
 								<pre>{this.state.context}</pre>
-								<div className="upload-container buffer-bottom-sm">
+								<div className="upload-container buffer-bottom-sm" onClick={this.showLightbox}>
 									<img src={this.state.image} alt="uploaded work" />
 								</div>
 							</div>

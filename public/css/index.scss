@@ -594,6 +594,10 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
 		width: 97%;
 		margin-bottom: 20px;
 	}
+
+	.upload-container {
+		cursor: pointer;
+	}
 }
 
 .upload-comment {
@@ -641,6 +645,49 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
 	}
 }
 
+.lightbox {
+	transition: opacity .1s;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color:rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	z-index: -1;
+
+	.upload-container {
+		width: 90%;
+		height: 90%;
+		margin: 0 auto;
+
+		img {
+			width: auto;
+			max-width: 80%;
+			height: auto;
+			max-height: 80%;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	i {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		font-size: 36px;
+		color: $white-color;
+		cursor: pointer;
+	}
+}
+
+.lightbox-show {
+	opacity: 1.0;
+	z-index: 1051;
+}
+
 @media (max-width: 991px) {
 	.dropzone {
 		margin-bottom: 30px;
@@ -653,6 +700,12 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
 	.overflow-scroll {
 		height: auto;
 		overflow-y: visible;
+	}
+
+	.lightbox {
+		i {
+			font-size: 24px;
+		}
 	}
 }
 

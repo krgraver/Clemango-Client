@@ -23,7 +23,7 @@ class TopNav extends Component {
 						    			</Button>
 				    				</NavItem>
 				    			</LinkContainer>
-				    			<LinkContainer to="/notifications" className="notifications-collapsed">
+				    			<LinkContainer to="/notifications" className="notifications-collapsed" onClick={this.props.clearNotificationsCollapsed}>
 					    			<NavItem eventKey={3}>
 					    				<div>Notifications <span className="notifications-badge">({this.props.newNotifications.length})</span></div>
 				    				</NavItem>

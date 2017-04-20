@@ -68,6 +68,7 @@ class App extends Component {
 		this.completeRegistration = this.completeRegistration.bind(this);
 		this.showNotifications = this.showNotifications.bind(this);
 		this.hideNotifications = this.hideNotifications.bind(this);
+		this.clearNotificationsCollapsed = this.clearNotificationsCollapsed.bind(this);
 		this.goToNotifications = this.goToNotifications.bind(this);
 		this.goToUpload = this.goToUpload.bind(this);
 	}
@@ -585,6 +586,26 @@ class App extends Component {
 			});
 	}
 
+	clearNotificationsCollapsed() {
+		let token = localStorage.getItem('token'),
+			currentUser = localStorage.getItem('currentUser');
+
+		request.post(this.clearNotificationsUrl)
+			.set('Authorization', 'Bearer ' + token)
+			.send({
+				user: currentUser
+			})
+			.end((err, res) => {
+				if (err) {
+					console.log(err);
+				} else {
+					this.setState({
+						newNotifications: []
+					});
+				}
+			});
+	}
+
 	hideNotifications() {
 		this.setState({
 			showNotifications: false
@@ -651,6 +672,7 @@ class App extends Component {
 						newNotifications={this.state.newNotifications}
 						profilePic={this.state.profilePic}
 						openAuthentication={this.openAuthentication}
+						clearNotificationsCollapsed={this.clearNotificationsCollapsed}
 				/>
 				<NotificationsPopup showNotifications={this.state.showNotifications}
 									goToNotifications={this.goToNotifications}

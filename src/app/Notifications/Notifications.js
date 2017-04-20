@@ -14,7 +14,6 @@ class Notifications extends Component {
 		}
 		this.getNotificationsUrl = constant.API_URL + '/notifications/getFirstNotifications';
 		this.getNextNotificationsUrl = constant.API_URL + '/notifications/getNextNotifications';
-		this.clearNotificationsUrl = constant.API_URL + '/notifications/clearNewNotifications';
 
 		this.goToUpload = this.goToUpload.bind(this);
 		this.loadNextNotifications = this.loadNextNotifications.bind(this);
@@ -44,17 +43,6 @@ class Notifications extends Component {
 					this.setState({
 						notifications: res.body
 					});
-				}
-			});
-
-		request.post(this.clearNotificationsUrl)
-			.set('Authorization', 'Bearer ' + token)
-			.send({
-				user: currentUser
-			})
-			.end((err, res) => {
-				if (err) {
-					console.log(err);
 				}
 			});
 	}

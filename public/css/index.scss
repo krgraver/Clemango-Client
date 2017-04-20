@@ -42,13 +42,14 @@ h1, h2, h3 {
 }
 
 pre {
-	word-break: keep-all;
-	white-space: pre-wrap;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 16px;
 	background-color: transparent;
 	border-color: transparent;
 	padding: 0;
+	word-break: keep-all;
+    word-wrap: keep-word;
+	white-space: pre-wrap;
 }
 
 a, a:hover {

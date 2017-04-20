@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import moment from 'moment';
+import DocumentMeta from 'react-document-meta';
 import constant from '../../config/constants.js';
 import Comments from './Comments/Comments.js';
 import CommentForm from './Comments/CommentForm.js';
@@ -439,8 +440,19 @@ class Upload extends Component {
 							</div>
 		}
 
+		const meta = {
+			meta: {
+				property: {
+					'og:type': 'website',
+					'og:title': 'Test title',
+					'og:description': 'Test description'
+				}
+			}
+		};
+
 		return (
 			<div>
+				<DocumentMeta {...meta} extend />
 				<ShareModal showShareModal={this.state.showShareModal}
 							closeShare={this.closeShare}
 							userFirst={this.state.userFirst}

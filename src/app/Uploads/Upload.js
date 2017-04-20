@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import moment from 'moment';
-import DocumentMeta from 'react-document-meta';
 import constant from '../../config/constants.js';
 import Comments from './Comments/Comments.js';
 import CommentForm from './Comments/CommentForm.js';
@@ -440,21 +439,8 @@ class Upload extends Component {
 							</div>
 		}
 
-		const meta = {
-			meta: {
-				property: {
-					'og:type': 'website',
-					'og:url': 'https://clemango.herokuapp.com',
-					'og:title': 'Give design feedback on Clemango',
-					'og:description': 'Your input is wanted on this design',
-					'og:image': 'https://s3.amazonaws.com/clemango/assets/clemango-icon.png'
-				}
-			}
-		};
-
 		return (
 			<div>
-				<DocumentMeta {...meta} extend />
 				<ShareModal showShareModal={this.state.showShareModal}
 							closeShare={this.closeShare}
 							userFirst={this.state.userFirst}

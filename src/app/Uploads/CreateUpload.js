@@ -209,9 +209,9 @@ class CreateUpload extends Component {
 						<Dropzone 	className={dropzoneClass}
 									onDrop={this.onDrop}
 									accept="image/jpeg, image/png"
-									maxSize={1048576}
+									maxSize={3145728}
 						>
-							<div>Drop an image of your work (JPG or PNG, max size 1MB)</div>
+							<div>Drop an image of your work (JPG or PNG, max size 3MB)</div>
 						</Dropzone>
 						{ImagePreview}
 					</Col>

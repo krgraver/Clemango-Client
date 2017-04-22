@@ -8,6 +8,7 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "browser-image-size": "^1.1.0",
     "classnames": "^2.2.5",
     "moment": "^2.18.1",
     "react": "^15.4.2",

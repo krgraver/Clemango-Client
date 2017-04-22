@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 import request from 'superagent';
 import constant from '../../config/constants.js';
 import Dropzone from 'react-dropzone';
+import browserImageSize from 'browser-image-size';
 import classNames from 'classnames';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Button, Checkbox } from 'react-bootstrap';
 
@@ -62,12 +63,25 @@ class CreateUpload extends Component {
 			});
 	}
 
-	onDrop(files) {
-		this.upload = files[0];
-		this.setState({
-			imagePreview: this.upload.preview,
-			imageValidation: false
-		});
+	onDrop(acceptedFiles, rejectedFiles) {
+		if (acceptedFiles.length === 1) {
+			browserImageSize(acceptedFiles[0])
+				.then((size) => {
+					if (size.width > 2000 || size.length > 6000) {
+						alert("Max width is 2000px and max height is 6000px");
+					} else {
+						this.upload = acceptedFiles[0];
+						this.setState({
+							imagePreview: this.upload.preview,
+							imageValidation: false
+						});
+					}
+				});
+		} else if (acceptedFiles.length > 1) {
+			alert("You can only upload a single image");
+		} else if (rejectedFiles.length > 0) {
+			alert("Maximum file size is 3MB");
+		}
 	}
 
 	changeTitle() {
@@ -211,7 +225,7 @@ class CreateUpload extends Component {
 									accept="image/jpeg, image/png"
 									maxSize={3145728}
 						>
-							<div>Drop an image of your work (JPG or PNG, max size 3MB)</div>
+							<div>Drop an image of your work (JPG or PNG)</div>
 						</Dropzone>
 						{ImagePreview}
 					</Col>

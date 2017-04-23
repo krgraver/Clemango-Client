@@ -95,7 +95,7 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
   margin-bottom: 70px; }
 
 .buffer-right {
-  margin-right: 10px; }
+  margin-right: 5px; }
 
 .column-container {
   background-color: #FFF;
@@ -779,8 +779,8 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
   .profile-summary h4 {
     font-size: 16px; }
   .profile-container {
-    width: 120px;
-    height: 120px; }
+    width: 100px;
+    height: 100px; }
   .profile-info {
     width: 60%;
     margin-top: 5px;

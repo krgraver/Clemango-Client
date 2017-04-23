@@ -507,14 +507,13 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
   overflow: hidden; }
 
 .lightbox {
-  transition: opacity .1s;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
   z-index: -1; }
 
 .lightbox .upload-container {
@@ -541,7 +540,7 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
   cursor: pointer; }
 
 .lightbox-show {
-  opacity: 1.0;
+  display: initial;
   z-index: 1051; }
 
 @media (max-width: 991px) {

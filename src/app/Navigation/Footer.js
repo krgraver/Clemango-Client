@@ -6,13 +6,13 @@ const Footer = () => (
     		<img src="assets/logo-color-sm.png" alt="Clemango Logo Orange" />
     	</div>
         <div className="social-icons">
-            <a href="https://www.facebook.com/ClemangoDesign/">
+            <a href="https://www.facebook.com/ClemangoDesign/" target="_blank">
                 <i className="fa fa-facebook" aria-hidden="true"></i>
             </a>
-            <a href="https://twitter.com/ClemangoDesign">
+            <a href="https://twitter.com/ClemangoDesign" target="_blank">
                 <i className="fa fa-twitter" aria-hidden="true"></i>
             </a>
-            <a href="https://medium.com/clemango">
+            <a href="https://medium.com/clemango" target="_blank">
                 <i className="fa fa-medium" aria-hidden="true"></i>
             </a>
         </div>

@@ -43,7 +43,7 @@ class AuthModal extends Component {
 					        		<FormControl
 					        			id="userEmail"
 					        			className="form-input"
-					        			type="text"
+					        			type="email"
 					        			value={this.props.email}
 					        			onChange={this.props.changeEmail}
 					        			placeholder="Enter email"
@@ -85,7 +85,7 @@ class AuthModal extends Component {
 					        		<FormControl
 					        			id="userEmail"
 					        			className="form-input"
-					        			type="text"
+					        			type="email"
 					        			value={this.props.email}
 					        			onChange={this.props.changeEmail}
 					        			placeholder="Enter your email address"
@@ -112,7 +112,7 @@ class AuthModal extends Component {
 					        		<FormControl
 					        			id="userEmail"
 					        			className="form-input"
-					        			type="text"
+					        			type="email"
 					        			value={this.props.email}
 					        			onChange={this.props.changeEmail}
 					        			placeholder="Enter your email address"

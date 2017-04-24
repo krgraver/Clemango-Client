@@ -398,7 +398,7 @@ class ShareModal extends Component {
 			      	{UserResults}
 	        		<InputGroup className="share-input">
 			          	<FormControl 	id="inviteEmail"
-	                					type="text"
+	                					type="email"
 	                					value={this.state.email}
 	                					placeholder="Invite someone by email"
 	                					onFocus={this.showSuggestedEmails}

@@ -12,8 +12,8 @@ const Footer = () => (
             <a href="https://twitter.com/ClemangoDesign" target="_blank">
                 <i className="fa fa-twitter" aria-hidden="true"></i>
             </a>
-            <a href="https://medium.com/clemango" target="_blank">
-                <i className="fa fa-medium" aria-hidden="true"></i>
+            <a href="https://plus.google.com/b/114971491647034162521/114971491647034162521" target="_blank">
+                <i className="fa fa-google-plus" aria-hidden="true"></i>
             </a>
         </div>
     	<p>This site is also up for feedback! Send questions or comments to <a href="mailto:kelly@clemango.com">kelly@clemango.com</a></p>

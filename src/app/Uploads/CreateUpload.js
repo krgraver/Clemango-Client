@@ -80,7 +80,7 @@ class CreateUpload extends Component {
 		} else if (acceptedFiles.length > 1) {
 			alert("You can only upload a single image");
 		} else if (rejectedFiles.length > 0) {
-			alert("Maximum file size is 3MB");
+			alert("Maximum file size is 5MB");
 		}
 	}
 
@@ -222,10 +222,10 @@ class CreateUpload extends Component {
 					<Col md={8}>
 						<Dropzone 	className={dropzoneClass}
 									onDrop={this.onDrop}
-									accept="image/jpeg, image/png"
-									maxSize={3145728}
+									accept="image/jpeg, image/png, image/gif"
+									maxSize={5242880}
 						>
-							<div>Drop an image of your work (JPG or PNG)</div>
+							<div>Drop an image of your work (JPG, PNG, of GIF)</div>
 						</Dropzone>
 						{ImagePreview}
 					</Col>

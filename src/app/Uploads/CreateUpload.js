@@ -225,7 +225,7 @@ class CreateUpload extends Component {
 									accept="image/jpeg, image/png, image/gif"
 									maxSize={5242880}
 						>
-							<div>Drop an image of your work (JPG, PNG, of GIF)</div>
+							<div>Drop an image of your work (JPG, PNG, or GIF)</div>
 						</Dropzone>
 						{ImagePreview}
 					</Col>

@@ -168,8 +168,7 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
 
 .btn-primary:focus {
   background-color: #7a3774;
-  border-color: #8C3F85;
-  box-shadow: 0 0 10px #8C3F85; }
+  border-color: #8C3F85; }
 
 .btn-clear, .btn-clear:focus {
   transition: all .2s ease-in-out;
@@ -205,9 +204,6 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
   border-color: #8C3F85;
   background-color: #8C3F85;
   box-shadow: none; }
-
-.btn-outline:focus {
-  box-shadow: 0 0 10px #8C3F85; }
 
 .btn-disabled {
   opacity: 0.5; }
@@ -442,7 +438,6 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
   transform: translate(-50%, -50%); }
 
 .dropzone:hover {
-  background-color: #fff5e6;
   color: #FF9D00; }
 
 .dropzone-empty {

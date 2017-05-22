@@ -224,7 +224,6 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
 .btn-primary:focus {
 	background-color: $purple-darkened;
 	border-color: $purple-secondary;
-	box-shadow: 0 0 10px $purple-secondary;
 }
 
 .btn-clear, .btn-clear:focus {
@@ -265,10 +264,6 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
 	border-color: $purple-secondary;
 	background-color: $purple-secondary;
 	box-shadow: none;
-}
-
-.btn-outline:focus {
-	box-shadow: 0 0 10px $purple-secondary;
 }
 
 .btn-disabled {
@@ -572,7 +567,6 @@ textarea.textbox-lg, textarea.textbox-lg:focus {
 }
 
 .dropzone:hover {
-	background-color: $orange-lightened;
 	color: $orange-primary;
 }
 
